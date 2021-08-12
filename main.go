@@ -7,6 +7,11 @@ import (
 
 func main() {
 	args := os.Args[1:]
+	exe := os.Getenv("EXECSILENT_EXE")
+	if exe != "" {
+		args = append([]string{exe}, args...)
+	}
+
 	cmd := exec.Command(args[0], args[1:]...)
 
 	cmd.Stdin = os.Stdin
